@@ -4,7 +4,7 @@ app = Flask(__name__)
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from datetime import datetime
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///.\\foo.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///./foo.db'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = 1#True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 1#True
 app.secret_key = 'vtheno'
@@ -99,7 +99,7 @@ class LoginView(MethodView):
         username = request.form['username']
         passwd = request.form['passwd']
         if username == app.config["USERNAME"] and passwd == app.config["PASSWD"]:
-            session["username"] = global_username
+            session["username"] = app.config["USERNAME"]
         else:
             flash("Username doesn't exist or incorrect password")
         return redirect(url_for("login"))
