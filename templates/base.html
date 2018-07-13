@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Web Page</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/code_style.css">
+  </head>
+  <body class="body">
+    <div id="top" class="divtop">
+      {% block top %}
+      {% endblock %}
+    </div>
+    <div class="divbody"> 
+      <div class="divleft">
+	{% block left %}
+	{% endblock %}
+      </div>
+      <div class="divright">
+	{% block body %}
+	{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

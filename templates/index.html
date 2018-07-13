@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+{% block top %}
+<ul class="top_ul">
+  {% with lines = getLines() %}
+  {% for name,link in lines %}
+  <li class="top_li">
+    <a href="{{ link }}">{{ name }}</a>
+  </li>
+  {% endfor %}
+  {% endwith %}
+</ul>
+{% endblock %}
+{% block left %}
+<ul>
+  {% with titles = getTitles() %}
+  {% for title,time in titles %}
+  <li>
+    {{ time }} - {{ title }}
+  </li>
+  {% endfor %}
+  {% endwith %}
+</ul>
+{% endblock %}
+{% block body %}
+
+
+{% with posts = getPosts() %}
+{% for title,body,time in posts %}
+<div class="divcomment">
+  <h4>{{ time }} - {{ title }}</h4>
+  {{ macros.render_macro(body) }}
+</div>
+{% endfor %}
+{% endwith %}
+{% endblock %}

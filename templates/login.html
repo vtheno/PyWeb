@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block top %}
+<ul class="top_ul">
+  {% with lines = getLines() %}
+  {% for name,link in lines %}
+  <li class="top_li">
+    <a href="{{ link }}">{{ name }}</a>
+  </li>
+  {% endfor %}
+  {% endwith %}
+</ul>
+{% endblock %}
+{% block left %}
+<ul>
+  {% with titles = getTitles() %}
+  {% for title,time in titles %}
+  <li>
+    {{ time }} - {{ title }}
+  </li>
+  {% endfor %}
+  {% endwith %}
+</ul>
+{% endblock %}
+{% block body %}
+<p></p>
+<div class="divweclome">
+  {% if 'username' in session %}
+  <p class="usr" >Weclome back {{ session['username'] }}!</p>
+  {% else %}
+  <p class="usr" >A login is required:</p>
+  <form action="{{url_for('login')}}" method="post">
+    <input class="usr" type="text" name="username" value="username" />
+    <input class="usr" type="password" name="passwd" value="admin" />
+    <input class="usr" type="submit" value="login" />
+  </form>
+  {% endif %}
+  {% with messages = get_flashed_messages() %}
+  {% for message in messages %}
+  <p class="usr">{{ message }}</p>
+  {% endfor %}
+  {% endwith %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block top %}
+<ul class="top_ul">
+  {% with lines = getLines() %}
+  {% for name,link in lines %}
+  <li class="top_li">
+    <a href="{{ link }}">{{ name }}</a>
+  </li>
+  {% endfor %}
+  {% endwith %}
+</ul>
+{% endblock %}
+{% block left %}
+<ul>
+  {% with titles = getTitles() %}
+  {% for title,time in titles %}
+  <li>
+    {{ time }} - {{ title }}
+  </li>
+  {% endfor %}
+  {% endwith %}
+</ul>
+{% endblock %}
+{% block body %}
+<p></p>
+<div class="divaddpost">
+  <form action="{{url_for('addpost')}}" method="post">
+    <input type="text" name="title" size="80" class="posttitle" value="please input title" />
+    <textarea name="body" class="postbody" >please input blog body</textarea>
+    <input type="submit" value="post" class="postsubmit" />
+  </form>
+</div>
+{% endblock %}
