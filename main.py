@@ -142,3 +142,10 @@ manager = Manager(app)
 if __name__ == '__main__':
     #app.run(port=80)
     manager.run()
+"""
+python main.py shell
+from main import db
+db.create_all()
+python run.py
+nginx 
+"""
